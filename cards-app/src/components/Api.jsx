@@ -1,1 +1,1 @@
-export const apiWords = "http://itgirlschool.justmakeit.ru/api/words";
+export const apiWords = "https://itgirlschool.justmakeit.ru/api/words";
