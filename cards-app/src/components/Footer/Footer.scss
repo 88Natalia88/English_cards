@@ -1,0 +1,11 @@
+@import '../../assets/css/style.scss';
+.footer{
+    width: 100%;
+    height: 100px;
+    background-color: $lightGrey;
+    text-align: center;
+    border-top: 3px $mainColor solid;;
+}
+.footer img{
+    height: 100px;
+}

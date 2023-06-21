@@ -1,0 +1,38 @@
+@import '../../assets/css/style.scss';
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+.card{
+    height: 300px;
+    width: 250px;
+    background-color: rgba(226,226,226, 0.5);
+    border: 1px solid 	$mainColor;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.cardTitle{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 30%;
+}
+.cardTranscription{
+    margin-bottom: 20px;
+}
+.card button{
+    border: 1px $mainColor solid;
+    height: 30px;
+    width: 150px;
+    background-color: $lightGrey;
+}
+/*.cards{
+    width: 100%;
+    max-width: 1110px;
+    margin: 0 auto;
+}*/
+.cardTranslate{
+    margin-top: 50%;
+    font-size: 24px;
+}

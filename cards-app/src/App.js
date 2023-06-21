@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import List from './components/List_cards/List';
 import './App.css';
+import { apiWords } from './components/Api';
+import Cards from './components/Cards/Cards';
 
 function App() {
+  const [words, setWords] = useState([]);
+  useEffect(() => {
+    fetch(apiWords)
+      .then(response => response.json())
+      .then(data => setWords(data));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    {
+        words.map((card) => 
+        <Cards key={card.id} english={card.english} transcription={card.transcription} russian={card.russian}/>
+        )
+      }
+      <List words={words} />
+</div>
   );
 }
 

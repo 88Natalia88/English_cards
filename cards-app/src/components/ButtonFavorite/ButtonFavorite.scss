@@ -1,0 +1,18 @@
+@import '../../assets/css/style.scss';
+
+.favorite:active {
+    background-color: #333;
+    border-color: #333;
+    color: #eee;
+}
+.favorite:hover{
+    cursor: pointer;
+}
+.favorite{
+    border: 1px $mainColor solid;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
