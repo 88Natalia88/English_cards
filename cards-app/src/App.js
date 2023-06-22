@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import List from './components/List_cards/List';
 import './App.css';
 import { apiWords } from './components/Api';
-import Cards from './components/Cards/Cards';
+//import Card from './components/Cards/Card';
+import CardsList from './components/Cards/CardsList';
 
 function App() {
   const [words, setWords] = useState([]);
@@ -13,11 +14,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-    {
-        words.map((card) => 
-        <Cards key={card.id} english={card.english} transcription={card.transcription} russian={card.russian}/>
-        )
-      }
+      <CardsList words={words}/>
       <List words={words} />
 </div>
   );

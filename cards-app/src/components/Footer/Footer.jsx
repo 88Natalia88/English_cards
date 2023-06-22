@@ -5,7 +5,7 @@ import logo from '../../assets/img/logo.png';
 function Footer(){
     return(
         <div className='footer'>
-<img src={logo}></img>
+            <div className="footer__copyright"> <p>2023&copy; Nataliia Balashova</p></div>
         </div>
     )
 }
