@@ -5,6 +5,7 @@ import Card from './Card';
 function CardsList(props){
     const {cardIndex} = props;
     const [index, setIndex] = useState (cardIndex ? cardIndex : 0);
+    const [pressedIndexes, setPressedIndexes] = useState([]);
    // const [pressed, setPressed] = useState(false);
     const handleNext = () => {
         if (index < props.words.length - 1) {
@@ -22,17 +23,19 @@ function CardsList(props){
     const word = props.words[index];
     console.log(word)
     /*const handleCheck = () => {
-        setPressed(!pressed);
+        if (!pressedIndexes.includes(index)) {
+            setPressedIndexes([...pressedIndexes, index]);
+        }      
     }*/
     return (
         <div>
             <Card
-                //english={word.english}
-                //transcription={word.transcription}
-                //russian={word.russian}
+                english={word.english}
+                transcription={word.transcription}
+                russian={word.russian}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
-                //pressed={word.index === index ? pressed : false}
+                //pressed={pressedIndexes.includes(index)}
                 //handleCheck={handleCheck}
             />
         </div>

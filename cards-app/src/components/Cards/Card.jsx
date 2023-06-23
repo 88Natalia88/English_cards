@@ -4,7 +4,10 @@ import './Cards.scss';
 function Card(props) {
     const [pressed, setPressed] = useState(false);
     const handleCheck = () => {  
-        setPressed(!pressed);  
+        setPressed(!pressed);
+        setTimeout(() => {
+            setPressed(false);
+        }, 4000);  
     } 
     return (
         <div className='cards'>

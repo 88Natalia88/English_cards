@@ -12,6 +12,9 @@ function App() {
       .then(response => response.json())
       .then(data => setWords(data));
   }, []);
+  if (words.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="App">
       <CardsList words={words}/>
