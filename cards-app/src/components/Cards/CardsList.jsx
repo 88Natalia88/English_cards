@@ -27,9 +27,9 @@ function CardsList(props){
     return (
         <div>
             <Card
-                english={word.english}
-                transcription={word.transcription}
-                russian={word.russian}
+                //english={word.english}
+                //transcription={word.transcription}
+                //russian={word.russian}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
                 //pressed={word.index === index ? pressed : false}
