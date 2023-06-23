@@ -1,13 +1,19 @@
 @import '../../assets/css/style.scss';
 .footer{
     //width: 100%;
-    height: 100px;
+    height: 80px;
     background-color: $lightGrey;
     border-top: 3px $mainColor solid;
     display: flex;
+    justify-content: space-around;
     &__copyright{
-        margin-top: 70px;
-        margin-left: 60px;
+        margin-top: 20px;
+    }
+    &__contacts{
+        margin-top: 20px;
+    }
+    &__contacts a{
+        margin-left: 10px;
     }
 }
 

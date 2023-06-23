@@ -5,7 +5,7 @@ import Card from './Card';
 function CardsList(props){
     const {cardIndex} = props;
     const [index, setIndex] = useState (cardIndex ? cardIndex : 0);
-    //const [pressed, setPressed] = useState(false);
+   // const [pressed, setPressed] = useState(false);
     const handleNext = () => {
         if (index < props.words.length - 1) {
             setIndex(index + 1);
