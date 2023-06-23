@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/English_cards/static/css/main.047b7751.css",
-    "main.js": "/English_cards/static/js/main.fdd6d0bb.js",
+    "main.js": "/English_cards/static/js/main.918a7171.js",
     "static/js/787.3cdc8eeb.chunk.js": "/English_cards/static/js/787.3cdc8eeb.chunk.js",
     "static/media/bg-words.jpg": "/English_cards/static/media/bg-words.5e3935203670e4765177.jpg",
     "static/media/logo.png": "/English_cards/static/media/logo.11c60509253e5ddca2e2.png",
     "index.html": "/English_cards/index.html",
     "main.047b7751.css.map": "/English_cards/static/css/main.047b7751.css.map",
-    "main.fdd6d0bb.js.map": "/English_cards/static/js/main.fdd6d0bb.js.map",
+    "main.918a7171.js.map": "/English_cards/static/js/main.918a7171.js.map",
     "787.3cdc8eeb.chunk.js.map": "/English_cards/static/js/787.3cdc8eeb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.047b7751.css",
-    "static/js/main.fdd6d0bb.js"
+    "static/js/main.918a7171.js"
   ]
 }
