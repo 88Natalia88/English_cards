@@ -11,13 +11,27 @@ function Card(props) {
     } 
     return (
         <div className='cards'>
-        <div className='btn'><button onClick={props.handlePrev}>prev</button></div>
+        <div className='btn'><button onClick={()=>{
+            if (pressed){
+                handleCheck();
+                props.handlePrev();
+            } else {
+                props.handlePrev();
+            }
+            }}>prev</button></div>
                 <div className='card'>
                     {pressed ? '' : <p className='cardTitle'>{props.english}</p>}
                     {pressed ? '' : <p className='cardTranscription'>{props.transcription}</p>}
                     {pressed ? <p className='cardTranslate'>{props.russian}</p> : <button onClick={handleCheck}>Проверить</button>}
                 </div>
-        <div className='btn'><button onClick={props.handleNext}>next</button></div>    
+        <div className='btn'><button onClick={()=>{
+            if (pressed){
+                handleCheck();
+                props.handleNext();
+            } else {
+                props.handleNext();
+            }
+            }}>next</button></div>    
         </div>
     );
     }
