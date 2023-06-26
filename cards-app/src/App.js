@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import List from './components/List_cards/List';
+import List from './components/ListCards/List';
 import './App.css';
 import { apiWords } from './components/Api';
 //import Card from './components/Cards/Card';

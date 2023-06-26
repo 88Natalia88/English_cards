@@ -20,7 +20,7 @@ function CardsList(props){
     //console.log(word)
 
     return (
-        <div>
+        <div className="card-container">
             <Card
                 english={word.english}
                 transcription={word.transcription}
