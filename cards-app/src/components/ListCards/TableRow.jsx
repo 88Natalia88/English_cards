@@ -7,19 +7,22 @@ import CanselButton from '../CanselButton/CanselButton';
 import FavoriteButton from '../ButtonFavorite/ButtonFavotite';
 
 function TableRow(props) {
-    const { english, transcription, russian } = props.word;
+    TableRow.defaultProps = {
+        word: {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'}
+    };
+    const { english, transcription, russian } = props.word || {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'};
     const [dataValue, setDataValue] = useState(props.word);
     const [pressed, setPressed] = useState(false);
 
     const handleEdit = () => { 
     setPressed(!pressed);
-}
-const handleSave = () => {
-    setPressed(!pressed);
-}
-const handleCansel = () => {
-    setPressed(!pressed);
-}
+    }
+    const handleSave = () => {
+        setPressed(!pressed);
+    }
+    const handleCansel = () => {
+        setPressed(!pressed);
+    }
     return (
         <tr>
             <td>{pressed ? <input type="text" value={dataValue.english} onChange={e => setDataValue(e.target.value)} /> : english}</td>
