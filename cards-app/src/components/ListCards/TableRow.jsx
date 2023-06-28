@@ -11,7 +11,9 @@ function TableRow(props) {
         word: {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'}
     };
     const { english, transcription, russian } = props.word || {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'};
-    const [dataValue, setDataValue] = useState(props.word);
+    const [dataEnglish, setDataEnglish] = useState(props.word);
+    const [dataTranscription, setDataTranscription] = useState(props.word);
+    const [dataRussia, setDataRussia] = useState(props.word);
     const [pressed, setPressed] = useState(false);
 
     const handleEdit = () => { 
@@ -25,9 +27,9 @@ function TableRow(props) {
     }
     return (
         <tr>
-            <td>{pressed ? <input type="text" value={dataValue.english} onChange={e => setDataValue(e.target.value)} /> : english}</td>
-            <td>{pressed ? <input type="text" value={dataValue.transcription} onChange={e => setDataValue(e.target.value)} /> : transcription}</td>
-            <td>{pressed ? <input type="text" value={dataValue.russian} onChange={e => setDataValue(e.target.value)} /> : russian}</td>
+            <td>{pressed ? <input type="text" value={dataEnglish.english} onChange={e => setDataEnglish(e.target.value)} /> : english}</td>
+            <td>{pressed ? <input type="text" value={dataTranscription.transcription} onChange={e => setDataTranscription(e.target.value)} /> : transcription}</td>
+            <td>{pressed ? <input type="text" value={dataRussia.russian} onChange={e => setDataRussia(e.target.value)} /> : russian}</td>
             <td>
             {pressed ? (<SaveButton onClick={handleSave}/>) : (<EditButton onClick={handleEdit}/>)}
             <FavoriteButton/>

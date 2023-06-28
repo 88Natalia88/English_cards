@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useTrail, animated } from 'react-spring';
 import './Cards.scss';
 
 function Card(props) {
@@ -9,9 +10,13 @@ function Card(props) {
             setPressed(false);
         }, 4000);  
     } 
+    const trail = useTrail(1, {
+        from: { opacity: 0, transform: 'scale(0)', translateY: -20 },
+        to: { opacity: 1, transform: 'scale(1)', translateY: 0 },
+    });
     return (
         <div className='cards'>
-        <div className='btn'><button onClick={()=>{
+            <div className='btn'><button onClick={()=>{
             if (pressed){
                 handleCheck();
                 props.handlePrev();
@@ -20,9 +25,20 @@ function Card(props) {
             }
             }}>prev</button></div>
                 <div className='card'>
-                    {pressed ? '' : <p className='cardTitle'>{props.english}</p>}
-                    {pressed ? '' : <p className='cardTranscription'>{props.transcription}</p>}
-                    {pressed ? <p className='cardTranslate'>{props.russian}</p> : <button onClick={handleCheck}>Проверить</button>}
+                    {trail.map((style, index) => (    
+            <animated.div key={index} style={style}>    
+                {pressed ? (    
+                <p className="cardTranslate">{props.russian}</p>    
+                ) : (    
+                <>    
+                    <p className="cardTitle">{props.english}</p>    
+                    <p className="cardTranscription">{props.transcription}</p>    
+                    <button onClick={handleCheck}>Проверить</button>    
+                </>    
+                )}    
+            </animated.div>    
+            ))}    
+
                 </div>
         <div className='btn'><button onClick={()=>{
             if (pressed){
@@ -36,3 +52,8 @@ function Card(props) {
     );
     }
 export default Card;
+/*              <animated.div style={trail}>
+                    {pressed ? '' : <p className='cardTitle'>{props.english}</p>}
+                    {pressed ? '' : <p className='cardTranscription'>{props.transcription}</p>}
+                    {pressed ? <p className='cardTranslate'>{props.russian}</p> : <button onClick={handleCheck}>Проверить</button>}
+                </animated.div>*/ 
