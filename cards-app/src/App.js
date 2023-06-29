@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import List from './components/ListCards/List';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import Header from './components/Header/Header';  
+import List from './components/ListWords/List';
 import './App.css';
 import { apiWords } from './components/Api';
-//import Card from './components/Cards/Card';
 import CardsList from './components/Cards/CardsList';
+//import Training from './components/Training/Training';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 function App() {
   const [words, setWords] = useState([]);
@@ -17,9 +24,15 @@ function App() {
   }
   return (
     <div className="App">
-      <CardsList words={words}/>
-      <List words={words} />
-</div>
+      <Router>
+      <Header/>
+        <Routes>
+              <Route path="/" element={<List words={words}/>}/>
+              <Route path="/cardsList" element={<CardsList words={words}/>}/>
+              <Route path="*" element={<ErrorPage/>}/>
+        </Routes>
+      </Router>  
+    </div>
   );
 }
 
