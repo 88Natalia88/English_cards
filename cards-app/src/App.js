@@ -27,8 +27,8 @@ function App() {
       <Router>
       <Header/>
         <Routes>
-              <Route path="/" element={<List words={words}/>}/>
-              <Route path="/cardsList" element={<CardsList words={words}/>}/>
+              <Route path="/English_cards" element={<List words={words}/>}/>
+              <Route path="/English_cards/cardsList" element={<CardsList words={words}/>}/>
               <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Router>  
