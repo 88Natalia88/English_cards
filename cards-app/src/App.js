@@ -24,15 +24,15 @@ function App() {
   }
   return (
     <div className="App">
-      <Router>
+    <Router>
       <Header/>
-        <Routes>
-              <Route path="/English_cards" element={<List words={words}/>}/>
-              <Route path="/English_cards/cardsList" element={<CardsList words={words}/>}/>
-              <Route path="*" element={<ErrorPage/>}/>
-        </Routes>
-      </Router>  
-    </div>
+      <Routes>
+        <Route path="/English_cards" element={<List words={words}/>}/>
+        <Route path="/English_cards/game" element={<CardsList words={words}/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
+      </Routes>
+    </Router> 
+    </div> 
   );
 }
 
