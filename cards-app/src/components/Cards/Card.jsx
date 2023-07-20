@@ -4,8 +4,10 @@ import './Cards.scss';
 
 function Card(props) {
     const [pressed, setPressed] = useState(false);
+    
     const handleCheck = () => {  
         setPressed(!pressed);
+        props.count();
         //setTimeout(() => {
             //setPressed(false);
         //}, 4000);  

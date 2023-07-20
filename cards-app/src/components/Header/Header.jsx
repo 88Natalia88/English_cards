@@ -5,6 +5,7 @@ import logo from '../../assets/img/logo.png';
 
 function Header(){
     return (
+        <div className='header-container'>
         <div className='header'>
             <div className='header-logo'>
                 <Link to="/English_cards"><img src={logo} alt="logo"/></Link>
@@ -16,6 +17,7 @@ function Header(){
                     <li><Link to="/English_cards/training">Режим тренировки</Link></li>
                 </ul>
             </nav>
+            </div>
         </div>
     )
 }

@@ -17,18 +17,23 @@ function CardsList(props){
         }
     };
 
+    const count = () =>{
+        //e.preventDefault();
+        setIndex(index + 1);
+    }
     const word = props.words[index];
     //console.log(word)
 
     return (
             <div className="card-container">
-
+                <p>Вы посмотрели {count} карточек</p>
                 <Card
                     english={word.english}
                     transcription={word.transcription}
                     russian={word.russian} 
                     handleNext={handleNext}
                     handlePrev={handlePrev}
+                    count={count}
                 />
 
         </div>
