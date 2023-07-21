@@ -7,7 +7,7 @@ function Card(props) {
     
     const handleCheck = () => {  
         setPressed(!pressed);
-        props.count();
+        props.changeCount();
         //setTimeout(() => {
             //setPressed(false);
         //}, 4000);  
