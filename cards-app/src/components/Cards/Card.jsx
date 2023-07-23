@@ -4,19 +4,24 @@ import './Cards.scss';
 
 function Card(props) {
     const [pressed, setPressed] = useState(false);
-    
+
     const handleCheck = () => {  
         setPressed(!pressed);
-        props.changeCount();
+
+        if(pressed){
+            props.changeCount();
+        }
         //setTimeout(() => {
             //setPressed(false);
         //}, 4000);  
     } 
+
     const trail = useTrail(1, {
         from: { opacity: 0, transform: 'scale(0)', translateY: -20 },
         to: { opacity: 1, transform: 'scale(1)', translateY: 0 },
         reset: true
     });
+    
     return (
         <div className='cards'>
             <div className='btn'><button onClick={()=>{

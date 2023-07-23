@@ -14,14 +14,17 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 
 function App() {
   const [words, setWords] = useState([]);
+
   useEffect(() => {
     fetch(apiWords)
       .then(response => response.json())
       .then(data => setWords(data));
   }, []);
+
   if (words.length === 0) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="App">
     <Router>
