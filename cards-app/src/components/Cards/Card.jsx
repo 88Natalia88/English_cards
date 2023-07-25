@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import { useTrail, animated } from 'react-spring';
 import './Cards.scss';
+
+//const Card = forwardRef((props, ref) => {
 
 function Card(props) {
     const [pressed, setPressed] = useState(false);
@@ -41,7 +43,7 @@ function Card(props) {
                 <>    
                     <p className="cardTitle">{props.english}</p>    
                     <p className="cardTranscription">{props.transcription}</p>    
-                    <button onClick={handleCheck}>Проверить</button>    
+                    <button onClick={handleCheck} ref={props.innerRef}>Проверить</button>    
                 </>    
                 )}    
             </animated.div>    
