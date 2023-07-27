@@ -1,15 +1,12 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import { useTrail, animated } from 'react-spring';
 import './Cards.scss';
-
-//const Card = forwardRef((props, ref) => {
 
 function Card(props) {
     const [pressed, setPressed] = useState(false);
 
     const handleCheck = () => {  
         setPressed(!pressed);
-
         if(pressed){
             props.changeCount();
         }
@@ -23,7 +20,7 @@ function Card(props) {
         to: { opacity: 1, transform: 'scale(1)', translateY: 0 },
         reset: true
     });
-    
+
     return (
         <div className='cards'>
             <div className='btn'><button onClick={()=>{
@@ -33,6 +30,7 @@ function Card(props) {
             } else {
                 props.handlePrev();
             }
+            
             }}>prev</button></div>
                 <div className='card'>
                     {trail.map((style, index) => (    
@@ -43,7 +41,7 @@ function Card(props) {
                 <>    
                     <p className="cardTitle">{props.english}</p>    
                     <p className="cardTranscription">{props.transcription}</p>    
-                    <button onClick={handleCheck} ref={props.innerRef}>Проверить</button>    
+                    <button onClick={handleCheck} ref={props.myRef}>Проверить</button>    
                 </>    
                 )}    
             </animated.div>    
