@@ -14,7 +14,7 @@ function CardsList(props){
 
     useEffect(() => {
         myRef.current.focus();
-    }, []);
+    }, [index]);
     
     const handleNext = () => {
         if (index < props.words.length - 1) {
