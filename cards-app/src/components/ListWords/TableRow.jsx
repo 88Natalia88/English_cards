@@ -22,7 +22,7 @@ function TableRow(props) {
     const handleSave = () => {
         setPressed(!pressed);
     }
-    const handleCansel = () => {
+    const handleCancel = () => {
         setPressed(!pressed);
     }
     return (
@@ -33,7 +33,7 @@ function TableRow(props) {
             <td>
             {pressed ? (<SaveButton onClick={handleSave}/>) : (<EditButton onClick={handleEdit}/>)}
             <FavoriteButton/>
-            {pressed ? (<CanselButton onClick={handleCansel}/>) : ( <ButtonRemove/>)}
+            {pressed ? (<CanselButton onClick={handleCancel}/>) : ( <ButtonRemove/>)}
             
             </td>
         </tr>
