@@ -5,38 +5,80 @@ import ButtonRemove from "../ButtonRemove/ButtonRemove";
 import SaveButton from '../SaveButton/SaveButton';
 import CanselButton from '../CanselButton/CanselButton';
 import FavoriteButton from '../ButtonFavorite/ButtonFavotite';
+import Modal from '../Modal/Modal';
+
 
 function TableRow(props) {
     TableRow.defaultProps = {
         word: {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'}
     };
     const { english, transcription, russian } = props.word || {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'};
-    const [dataEnglish, setDataEnglish] = useState(props.word);
-    const [dataTranscription, setDataTranscription] = useState(props.word);
-    const [dataRussia, setDataRussia] = useState(props.word);
+    const [data, setData] = useState({
+        english: english,
+        transcription: transcription,
+        russian: russian
+    });
     const [pressed, setPressed] = useState(false);
+    const [isValid, setIsValid] = useState({
+        english: true,
+        transcription: true,
+        russian: true
+    });
+    const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
-    const handleEdit = () => { 
-    setPressed(!pressed);
-    }
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+        setIsValid(prevIsValid => ({
+            ...prevIsValid,
+            [name]: value.trim() !== ''
+        }));
+        setIsSaveButtonDisabled(Object.values({...data, [name]: value}).some(value => value.trim() === ''));
+
+        setIsModalOpen(Object.values(isValid).every((valid) => valid));
+        setModalMessage(Object.values(isValid).every((valid) => valid) ? 'Все успешно сохранено' : 'Произошла ошибка, что-то введено некорректно');
+    };
+
+    const handleEdit = () => {
+        setPressed(!pressed);
+    };
+
     const handleSave = () => {
         setPressed(!pressed);
-    }
+
+        console.log('Измененные данные:', data);
+        
+        setIsModalOpen(true);
+        setModalMessage(Object.values(isValid).every((valid) => valid) ? 'Все успешно сохранено' : 'Произошла ошибка, что-то введено некорректно');
+    };
+
     const handleCancel = () => {
         setPressed(!pressed);
-    }
+    };
+
     return (
         <tr>
-            <td>{pressed ? <input type="text" value={dataEnglish.english} onChange={e => setDataEnglish(e.target.value)} /> : english}</td>
-            <td>{pressed ? <input type="text" value={dataTranscription.transcription} onChange={e => setDataTranscription(e.target.value)} /> : transcription}</td>
-            <td>{pressed ? <input type="text" value={dataRussia.russian} onChange={e => setDataRussia(e.target.value)} /> : russian}</td>
+            <td>{pressed ? <input type="text" name="english" value={data.english} onChange={handleInputChange} className={isValid.english ? '' : 'error'}/> : english}</td>
+            <td>{pressed ? <input type="text" name="transcription" value={data.transcription} onChange={handleInputChange} className={isValid.transcription ? '' : 'error'}/> : transcription}</td>
+            <td>{pressed ? <input type="text" name="russian" value={data.russian} onChange={handleInputChange} className={isValid.russian ? '' : 'error'}/> : russian}</td>
             <td>
-            {pressed ? (<SaveButton onClick={handleSave}/>) : (<EditButton onClick={handleEdit}/>)}
-            <FavoriteButton/>
-            {pressed ? (<CanselButton onClick={handleCancel}/>) : ( <ButtonRemove/>)}
-            
+                {pressed ? <SaveButton onClick={handleSave} disabled={isSaveButtonDisabled}/> : <EditButton onClick={handleEdit}/>}
+                <FavoriteButton />
+                {pressed ? <CanselButton onClick={handleCancel}/> : <ButtonRemove />}
             </td>
+            <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleModalClose} />
         </tr>
     );
-    }
+}
+
 export default TableRow;
+

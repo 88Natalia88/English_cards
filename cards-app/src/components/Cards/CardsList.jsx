@@ -8,9 +8,6 @@ function CardsList(props){
     const [count, setCount] = useState (0);
     const myRef = useRef(null);
 
-    /*const myFocus = () => {
-        myRef.current.focus();
-    };*/
 
     useEffect(() => {
         myRef.current.focus();
