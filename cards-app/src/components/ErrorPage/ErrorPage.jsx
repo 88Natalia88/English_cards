@@ -3,7 +3,7 @@ import './ErrorPage.scss';
 
 function ErrorPage(){
     return(
-        <div className="error">
+        <div className="error-page">
             <h1>404 Error Page</h1>
                 <section className="error-container">
                     <span className="four"><span className="screen-reader-text">4</span></span>
