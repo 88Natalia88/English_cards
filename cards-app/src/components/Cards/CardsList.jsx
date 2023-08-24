@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef} from "react";
 import './Cards.scss';
 import Card from './Card';
 
+
 function CardsList(props){
     const {cardIndex} = props;
     const [index, setIndex] = useState (cardIndex ? cardIndex : 0); 
