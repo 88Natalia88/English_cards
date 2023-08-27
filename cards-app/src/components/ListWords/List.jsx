@@ -1,10 +1,14 @@
-import React from "react";
 import "./List.scss";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
+import React, { useContext } from "react";
+import { WordContext } from "../WordContext/WordContext";
+
 
 function List(props) {
-    const tableWords = props.words.map((word) => (
+    const { words } = useContext(WordContext);
+
+    const tableWords = words.map((word) => (
         <TableRow key={word.id} word={word} />
     ));
     return (
