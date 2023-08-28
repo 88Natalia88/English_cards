@@ -36,18 +36,22 @@ function TableRow(props) {
     
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        
         setData(prevData => ({
             ...prevData,
             [name]: value
         }));
-        setIsValid(prevIsValid => ({
-            ...prevIsValid,
-            [name]: value.trim() !== ''
-        }));
-        setIsSaveButtonDisabled(Object.values({...data, [name]: value}).some(value => value.trim() === ''));
 
-        setIsModalOpen(Object.values(isValid).every((valid) => valid));
-        setModalMessage(Object.values(isValid).every((valid) => valid) ? 'Все успешно сохранено' : 'Произошла ошибка, что-то введено некорректно');
+        const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
+
+        if (isAnyFieldEmpty) {
+            setIsSaveButtonDisabled(true);
+        } else {
+            setIsValid(prevIsValid => ({
+                ...prevIsValid,
+                [name]: value.trim() !== ''
+            }));
+        }
     };
 
     const handleEdit = () => {
@@ -55,14 +59,17 @@ function TableRow(props) {
     };
 
     const handleSave = () => {
-        setPressed(!pressed);
-
-        console.log('Измененные данные:', data);
-        
-        updateWord(data);
-
-        setIsModalOpen(true);
-        setModalMessage(Object.values(isValid).every((valid) => valid) ? 'Все успешно сохранено' : 'Произошла ошибка, что-то введено некорректно');
+        const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
+        if (!isAnyFieldEmpty) {
+            setPressed(!pressed);
+            console.log('Измененные данные:', data);
+            updateWord(data);
+            setIsModalOpen(true);
+            setModalMessage('Все успешно сохранено');
+        } else {
+            setIsModalOpen(true);
+            setModalMessage('Произошла ошибка, заполните все поля');
+        }
     };
 
     const handleCancel = () => {
