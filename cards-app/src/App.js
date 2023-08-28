@@ -7,7 +7,7 @@ import {
 import Header from './components/Header/Header';  
 import List from './components/ListWords/List';
 import './App.css';
-import { WordContextProvider } from './components/WordContext/WordContext';
+import { WordContextProvider } from './components/Context/Context';
 import CardsList from './components/Cards/CardsList';
 //import Training from './components/Training/Training';
 import ErrorPage from './components/ErrorPage/ErrorPage';

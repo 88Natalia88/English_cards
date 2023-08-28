@@ -2,7 +2,7 @@ import "./List.scss";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 import React, { useContext } from "react";
-import { WordContext } from "../WordContext/WordContext";
+import { WordContext } from "../Context/Context";
 
 
 function List(props) {
