@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './List.scss';
 import EditButton from "../EditButton/EditButton";
 import ButtonRemove from "../ButtonRemove/ButtonRemove";
@@ -6,9 +6,11 @@ import SaveButton from '../SaveButton/SaveButton';
 import CanselButton from '../CanselButton/CanselButton';
 import FavoriteButton from '../ButtonFavorite/ButtonFavotite';
 import Modal from '../Modal/Modal';
+import { WordContext } from '../WordContext/WordContext';
 
 
 function TableRow(props) {
+    const { updateWord, deleteWord } = useContext(WordContext);
     TableRow.defaultProps = {
         word: {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'}
     };
@@ -57,12 +59,18 @@ function TableRow(props) {
 
         console.log('Измененные данные:', data);
         
+        updateWord(data);
+
         setIsModalOpen(true);
         setModalMessage(Object.values(isValid).every((valid) => valid) ? 'Все успешно сохранено' : 'Произошла ошибка, что-то введено некорректно');
     };
 
     const handleCancel = () => {
         setPressed(!pressed);
+    };
+
+    const handleRemove = () => {
+        deleteWord(props.word.id);
     };
 
     return (
@@ -73,7 +81,7 @@ function TableRow(props) {
             <td>
                 {pressed ? <SaveButton onClick={handleSave} disabled={isSaveButtonDisabled}/> : <EditButton onClick={handleEdit}/>}
                 <FavoriteButton />
-                {pressed ? <CanselButton onClick={handleCancel}/> : <ButtonRemove />}
+                {pressed ? <CanselButton onClick={handleCancel}/> : <ButtonRemove onClick={handleRemove} />}
             </td>
             <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleModalClose} />
         </tr>
