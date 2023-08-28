@@ -43,16 +43,59 @@ function WordContextProvider({children}){
     if (isLoading) {
         return <Loader/>;
     }
-    const addWord = (newWord) => {
-        setWords([...words, newWord]);
+
+    
+    const addWord = async (newWord) => {
+        try {
+            const response = await fetch("/api/words", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newWord),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setWords((words) => [...words, data]);
+            } else {
+                throw new Error("Something went wrong...");
+            }
+        } catch (error) {
+            setError(error);
+        }
     };
     
-    const updateWord = (updatedWord) => {
-        setWords(words.map(word => word.id === updatedWord.id ? updatedWord : word));
+    const deleteWord = async (wordId) => {
+        try {
+            const response = await fetch(`/api/words/${wordId}`, {
+                method: "DELETE",
+            });
+            if (response.ok) {
+                setWords((words) => words.filter((word) => word.id !== wordId));
+            } else {
+                throw new Error("Something went wrong...");
+            }
+        } catch (error) {
+            setError(error);
+        }
     };
     
-    const deleteWord = (wordId) => {
-        setWords(words.filter(word => word.id !== wordId));
+    const updateWord = async (updatedWord) => {
+        try {
+            const response = await fetch(`/api/words/${updatedWord.id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedWord),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setWords((words) =>
+                    words.map((word) => (word.id === data.id ? data : word))
+                );
+            } else {
+                throw new Error("Something went wrong...");
+            }
+        } catch (error) {
+            setError(error);
+        }
     };
     
     return (

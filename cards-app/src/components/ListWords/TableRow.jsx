@@ -6,7 +6,7 @@ import SaveButton from '../SaveButton/SaveButton';
 import CanselButton from '../CanselButton/CanselButton';
 import FavoriteButton from '../ButtonFavorite/ButtonFavotite';
 import Modal from '../Modal/Modal';
-import { WordContext } from '../WordContext/WordContext';
+import { WordContext } from '../Context/Context';
 
 
 function TableRow(props) {
