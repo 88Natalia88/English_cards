@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef, useContext} from "react";
 import './Cards.scss';
 import Card from './Card';
+import { WordContext } from "../Context/Context";
+
 
 
 function CardsList(props){
@@ -8,6 +10,7 @@ function CardsList(props){
     const [index, setIndex] = useState (cardIndex ? cardIndex : 0); 
     const [count, setCount] = useState (0);
     const myRef = useRef(null);
+    const { words } = useContext(WordContext);
 
 
     useEffect(() => {
@@ -15,7 +18,7 @@ function CardsList(props){
     }, [index]);
     
     const handleNext = () => {
-        if (index < props.words.length - 1) {
+        if (index < words.length - 1) {
             setIndex(index + 1);
         }
     };
@@ -30,7 +33,7 @@ function CardsList(props){
         setCount(count + 1);
     }
 
-    const word = props.words[index];
+    const word = words[index];
     //console.log(word)
 
     return (
