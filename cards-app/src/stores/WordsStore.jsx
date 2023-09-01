@@ -1,5 +1,5 @@
 
-import { action, observable } from 'mobx';
+import { action, observable } from 'mobx-react';
 
 const WordsStore = observable({
     words: [],
@@ -15,7 +15,7 @@ const WordsStore = observable({
         this.words.splice(index, 1);
     }),
 
-    setWords: action((words) => {
+    setWord: action((words) => {
         this.words = words;
     }),
 
