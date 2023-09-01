@@ -11,15 +11,14 @@ import { Provider } from 'mobx-react';
 import CardsList from './components/Cards/CardsList';
 //import Training from './components/Training/Training';
 import ErrorPage from './components/ErrorPage/ErrorPage';
-import WordsStore from './components/MobX/WordsStore';
+import WordsStore from './stores/WordsStore';
+//import stores from './stores'
 
 function App() {
-  const words = {
-    wordStore: new WordsStore()
-  }
+
   return (
     <div className="App">
-      <Provider {...words}>
+      <Provider {...WordsStore}>
     <Router>
       <Header/>
       <Routes>
