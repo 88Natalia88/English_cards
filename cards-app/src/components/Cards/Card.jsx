@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSpring, animated } from 'react-spring';
 import './Cards.scss';
 
+
 function Card(props) {
     const [pressed, setPressed] = useState(false);
     const [showContent, setShowContent] = useState(true);

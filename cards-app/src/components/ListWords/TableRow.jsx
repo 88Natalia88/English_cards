@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './List.scss';
 import EditButton from "../EditButton/EditButton";
 import ButtonRemove from "../ButtonRemove/ButtonRemove";
@@ -6,9 +6,11 @@ import SaveButton from '../SaveButton/SaveButton';
 import CanselButton from '../CanselButton/CanselButton';
 import FavoriteButton from '../ButtonFavorite/ButtonFavotite';
 import Modal from '../Modal/Modal';
+import { WordContext } from '../Context/Context';
 
 
 function TableRow(props) {
+    const { updateWord, deleteWord } = useContext(WordContext);
     TableRow.defaultProps = {
         word: {english: 'loading', transcription: '[ˈləʊdɪŋ]', russian: 'загрузка'}
     };
@@ -33,45 +35,50 @@ function TableRow(props) {
     };
     
     const handleInputChange = (e) => {
-            const { name, value } = e.target;
-            
-            setData(prevData => ({
-                ...prevData,
-                [name]: value
+        const { name, value } = e.target;
+        
+        setData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+
+        const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
+
+        if (isAnyFieldEmpty) {
+            setIsSaveButtonDisabled(true);
+        } else {
+            setIsValid(prevIsValid => ({
+                ...prevIsValid,
+                [name]: value.trim() !== ''
             }));
-    
-            const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
-    
-            if (isAnyFieldEmpty) {
-                setIsSaveButtonDisabled(true);
-            } else {
-                setIsValid(prevIsValid => ({
-                    ...prevIsValid,
-                    [name]: value.trim() !== ''
-                }));
-            }
-        };
+        }
+    };
 
     const handleEdit = () => {
         setPressed(!pressed);
     };
 
-        const handleSave = () => {
-            const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
-            if (!isAnyFieldEmpty) {
-                setPressed(!pressed);
-                console.log('Измененные данные:', data);
-                setIsModalOpen(true);
-                setModalMessage('Все успешно сохранено');
-            } else {
-                setIsModalOpen(true);
-                setModalMessage('Произошла ошибка, заполните все поля');
-            }
-        };
+    const handleSave = () => {
+        const isAnyFieldEmpty = Object.values(data).some(value => value.trim() === '');
+        if (!isAnyFieldEmpty) {
+            setPressed(!pressed);
+            console.log('Измененные данные:', data);
+            updateWord(data);
+            setIsModalOpen(true);
+            setModalMessage('Все успешно сохранено');
+        } else {
+            setIsModalOpen(true);
+            setModalMessage('Произошла ошибка, заполните все поля');
+        }
+    };
 
 
     const handleCancel = () => {
         setPressed(!pressed);
+    };
+
+    const handleRemove = () => {
+        deleteWord(props.word.id);
     };
 
     return (
@@ -82,7 +89,7 @@ function TableRow(props) {
             <td>
                 {pressed ? <SaveButton onClick={handleSave} disabled={isSaveButtonDisabled}/> : <EditButton onClick={handleEdit}/>}
                 <FavoriteButton />
-                {pressed ? <CanselButton onClick={handleCancel}/> : <ButtonRemove />}
+                {pressed ? <CanselButton onClick={handleCancel}/> : <ButtonRemove onClick={handleRemove} />}
             </td>
             <Modal isOpen={isModalOpen} message={modalMessage} onClose={handleModalClose} />
         </tr>
